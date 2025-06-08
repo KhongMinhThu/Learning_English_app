@@ -1,0 +1,16 @@
+[
+  {
+    "id": "chat_001",
+    "timestamp": "2025-06-07T10:00:00Z",
+    "messages": [
+      {
+        "sender": "user",
+        "text": "Hello"
+      },
+      {
+        "sender": "ai",
+        "text": "Hi, how can I help you today?"
+      }
+    ]
+  }
+]
