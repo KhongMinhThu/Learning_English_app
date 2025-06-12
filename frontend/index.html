@@ -1,16 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React Chatbot</title>
-    <meta name="description" content="Customizable Chatbot created with OpenAI's GPT API">
-    <meta name="author" content="Tyler O'Neil">
-    <meta name="keywords" content="chatbot, chat, bot, openai, api, gpt, express, node, react, react.js">
-    <link rel="icon" type="image/x-icon" href="./favicon.png">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <title>English Speaking Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Thanh tiêu đề -->
+    <header class="header">
+        <button id="toggle-sidebar-btn" title="Ẩn/Hiện menu"><i class="fas fa-bars"></i></button>
+        <div class="header-title">🧠 SpeakEasy</div>
+        <button id="new-chat-btn" title="Bắt đầu cuộc hội thoại mới">
+        <i class="fas fa-clipboard"></i>
+    </button>
+    </header>
+
+    <!-- Phần chính gồm sidebar và main content -->
+    <div class="layout-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+        <div class="sidebar-tabs">
+            <button class="tab-button active" onclick="openTab('chat-tab', this)">💬 Hội thoại</button>
+            <button class="tab-button" onclick="openTab('history-tab', this)">📜 Lịch sử</button>
+            <button class="tab-button" onclick="openTab('vocab-tab', this)">📚 Từ đã tra</button>
+        </div>
+        </div>
+
+        <!-- Nội dung -->
+        <div class="main-content">
+            <!-- Hội thoại -->
+            <div class="tab-content" id="chat-tab">
+                <div class="chat-box" id="chat-box"></div>
+                <div class="input-area">
+                    <button id="mic-btn"><i class="fas fa-microphone"></i></button>
+                    <input type="text" id="user-input" placeholder="Nhập hoặc nói gì đó...">
+                    <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+                <div id="recording-status" style="display:none;">
+                    <span>🎙️ Đang thu âm...</span>
+                    <button id="stop-btn">Dừng</button>
+                </div>
+            </div>
+
+            <!-- Lịch sử -->
+            <div class="tab-content" id="history-tab" style="display: none;">
+                <h2>Lịch sử hội thoại</h2>
+                <div id="history-list" class="history-list"></div>
+                <div id="history-detail" class="history-detail" style="display: none;">
+                    <h3>Chi tiết hội thoại</h3>
+                    <button id="back-btn" title="Quay lại" onclick="hideHistoryDetail()"><i class="fas fa-arrow-left"></i></button>
+                    <div id="history-messages" class="chat-box"></div>
+                </div>
+            </div>
+
+            <!-- Từ đã tra -->
+            <div class="tab-content" id="vocab-tab" style="display: none;">
+                <div class="vocab-controls">
+                    <input type="text" id="vocabSearch" placeholder="🔍 Tìm từ...">
+                    <button id="clearAllVocab">🗑️ Xoá tất cả</button>
+                </div>
+                <div id="vocab-list" class="vocab-list"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Popup từ điển -->
+    <div class="vocab-popup" id="vocabPopup">
+            <div><strong id="popupWord"></strong></div>
+            <div id="popupPhonetic"></div>
+            <div id="popupMeaningEn"></div>
+            <div id="popupMeaningVi"></div>
+            <button id="vocabAudioBtn">🔊 Nghe phát âm</button>
+            <button id="closePopup">Đóng</button>
+    </div>
+
+    <script type="module" src="Main.js"></script>
+
+</body>
 </html>
+
+
+
